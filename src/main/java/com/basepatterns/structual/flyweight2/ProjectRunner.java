@@ -2,12 +2,14 @@ package com.basepatterns.structual.flyweight2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ProjectRunner {
     public static void main(String[] args) {
         DeveloperFactory developerFactory = new DeveloperFactory();
 
-        List<Developer> developers = new ArrayList<>();
+        Supplier<List<Developer>> devs = ArrayList::new;
+        List<Developer> developers = devs.get();
 
         developers.add(developerFactory.getDeveloperBySpecialty("java"));
         developers.add(developerFactory.getDeveloperBySpecialty("java"));
