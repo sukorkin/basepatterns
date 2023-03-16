@@ -25,8 +25,6 @@ public class Task3Runner {
             currentCount++;
         }
 
-        for (Integer i : els) {
-            System.out.println(i);
-        }
+        els.forEach(System.out::println);
     }
 }

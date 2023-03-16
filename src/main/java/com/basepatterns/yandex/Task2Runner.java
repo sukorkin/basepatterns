@@ -7,10 +7,12 @@ public class Task2Runner {
     public static void main(String[] args) throws Exception {
         BufferedReader r = new BufferedReader(new InputStreamReader(System.in));
 
+        int n = Integer.parseInt(r.readLine());
+        if (n < 1 || n > 10000) return;
+
         int maxCountRepeat = 0;
         int countRepeat = 0;
 
-        int n = Integer.parseInt(r.readLine());
         int currentCount = 0;
         while (currentCount < n) {
             String inputElem = r.readLine();
