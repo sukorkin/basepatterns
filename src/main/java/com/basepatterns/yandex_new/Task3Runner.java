@@ -1,6 +1,8 @@
 package com.basepatterns.yandex_new;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.OptionalInt;
 
 public class Task3Runner {
     static final String input = "input.txt";
@@ -28,28 +30,36 @@ public class Task3Runner {
             x[i] = Integer.parseInt(tokens[0]);
             y[i] = Integer.parseInt(tokens[1]);
         }
+        OptionalInt maxXOpt = Arrays.stream(x).max();
+        OptionalInt maxYOpt = Arrays.stream(y).max();
 
         int maxCount = 0;
-        int[] maxPoints = new int[5];
+        int[] maxPoints = new int[n];
         for (int j = s; j >= 1; j--) {
-            int b = s / j;
-            int count = 0;
-            int[] points = new int[5];
-            for (int i = 0; i < n; i++) {
-                if (x[i] <= j && y[i] <= b) {
-                    count++;
-                    points[i] = i + 1;
+            double b = s / j;
+            int maxX = maxXOpt.getAsInt();
+            int maxY = maxYOpt.getAsInt();
+            for (int xP = maxX; xP > 0; xP--) {
+                for (int yP = maxY; yP > 0; yP--) {
+                    int count = 0;
+                    int[] points = new int[n];
+                    for (int i = 0; i < n; i++) {
+                        if ((xP - j <= x[i] && x[i] <= xP) && (yP - b <= y[i] && y[i] <= yP)) {
+                            count++;
+                            points[i] = i + 1;
+                        }
+                    }
+                    if (count > maxCount) {
+                        maxCount = count;
+                        maxPoints = points;
+                    }
                 }
-            }
-            if (count > maxCount) {
-                maxCount = count;
-                maxPoints = points;
             }
         }
 
         bw.write(maxCount + "\n");
         for (var point : maxPoints) {
-            if (point != 0) {
+            if (point > 0) {
                 bw.write(point + " ");
             }
         }
