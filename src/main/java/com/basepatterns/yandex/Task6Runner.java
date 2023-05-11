@@ -8,15 +8,15 @@ public class Task6Runner {
     static final String output = "output.txt";
     static BufferedReader br;
     static BufferedWriter bw;
-    static int maxDistance;
+    static long maxDistance;
 
     public static void main(String[] args) throws IOException {
         br = new BufferedReader(new FileReader(input));
         bw = new BufferedWriter(new FileWriter(output));
 
         int citiesN = Integer.parseInt(br.readLine());
-        int[] x = new int[citiesN];
-        int[] y = new int[citiesN];
+        long[] x = new long[citiesN];
+        long[] y = new long[citiesN];
 
         for (int i = 0; i < citiesN; i++) {
             String line = br.readLine();
@@ -50,7 +50,7 @@ public class Task6Runner {
             }
             for (int j = 0; j < citiesN; j++) {
                 if (i == j) continue;
-                int distance = Math.abs(x[j] - x[i]) + Math.abs(y[j] - y[i]);
+                long distance = Math.abs(x[j] - x[i]) + Math.abs(y[j] - y[i]);
                 if (!visited.contains(j) && distance <= maxDistance) {
                     counts.put(j, count + 1);
                     visited.add(j);

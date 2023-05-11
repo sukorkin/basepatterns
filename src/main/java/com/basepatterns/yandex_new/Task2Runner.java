@@ -57,18 +57,18 @@ public class Task2Runner {
         return sumInQuarter;
     }
 
-    private static double getDaysBetween(int startDay, int startMonth, int endDay, int endMonth) {
+    private static long getDaysBetween(int startDay, int startMonth, int endDay, int endMonth) {
         var firstDate = LocalDate.of(2022, startMonth, startDay);
         var secondDate = LocalDate.of(2022, endMonth, endDay);
-        return (double) ChronoUnit.DAYS.between(firstDate, secondDate) + 1;
+        return ChronoUnit.DAYS.between(firstDate, secondDate) + 1;
     }
 
-    private static double[] getDaysBetweenInQuarter(int startDay, int startMonth, int endDay, int endMonth) {
+    private static long[] getDaysBetweenInQuarter(int startDay, int startMonth, int endDay, int endMonth) {
         int startQuarter = getQuarter(startMonth);
         int endQuarter = getQuarter(endMonth);
         var firstDate = LocalDate.of(2022, startMonth, startDay);
         var secondDate = LocalDate.of(2022, endMonth, endDay);
-        double[] daysInQuarter = new double[4];
+        long[] daysInQuarter = new long[4];
         for (int i = startQuarter; i <= endQuarter; i++) {
             if (i == 1) {
                 firstDate = LocalDate.of(2022, 1, 1);
@@ -92,7 +92,7 @@ public class Task2Runner {
             if (i == endQuarter) {
                 secondDate = LocalDate.of(2022, endMonth, endDay);
             }
-            daysInQuarter[i - 1] = (double) ChronoUnit.DAYS.between(firstDate, secondDate) + 1;
+            daysInQuarter[i - 1] = ChronoUnit.DAYS.between(firstDate, secondDate) + 1;
         }
         return daysInQuarter;
     }

@@ -102,8 +102,8 @@ public class Task4Runner {
         executor.submit(r);
         consumers.shutdown();
         executor.shutdown();
-        consumers.awaitTermination(15 * 1000L, TimeUnit.MILLISECONDS);
-        executor.awaitTermination(10 * 1000L, TimeUnit.MILLISECONDS);
+        consumers.awaitTermination(14 * 1000L, TimeUnit.MILLISECONDS);
+        executor.awaitTermination(14 * 1000L, TimeUnit.MILLISECONDS);
 
         for (String result : results) {
             var out = result.split(":");
